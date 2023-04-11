@@ -2,6 +2,8 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import { Title } from "../components/Title";
 import {RegisterUserForm} from "../fragments/RegisterUserForm";
+import {LoginForm} from "../fragments/LoginForm";
+import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
 
 export const Home = () => {
   return <Container maxWidth="lg">
@@ -9,9 +11,10 @@ export const Home = () => {
       <Grid item md={12}>
         <Title primary>Startups and Users Landing Page</Title>
       </Grid>
-
       <Grid item md={9}>
         <RegisterUserForm />
+        <LoginForm />
+        <ChangePasswordForm />
       </Grid>
 
     </Grid>
