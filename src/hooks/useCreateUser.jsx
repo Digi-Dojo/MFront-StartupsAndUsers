@@ -12,6 +12,7 @@ export const useCreateUser = () => {
         try {
             const response = await axios.post('/v1/users/create', userDTO);
             setLoading(false);
+            setError(null);
            return response.data;
         } catch (err) {
             setLoading(false);
