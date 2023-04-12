@@ -19,11 +19,14 @@ export const Home = () => {
         <RegisterUserForm />
         <LoginForm />
         <ChangePasswordForm />
-        <AddTeamMemberForm />
       </Grid>
 
       <Grid item md={9}>
         <StartUpForm />
+      </Grid>
+
+      <Grid item md={9}>
+        <AddTeamMemberForm />
       </Grid>
 
     </Grid>
