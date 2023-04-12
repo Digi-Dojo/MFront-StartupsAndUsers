@@ -5,20 +5,26 @@ import {RegisterUserForm} from "../fragments/RegisterUserForm";
 import {LoginForm} from "../fragments/LoginForm";
 import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
 import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
+import {useState} from "react";
 
 export const Home = () => {
+  const [loggedUser, setLoggedUser] = useState(null);
+
+  const updateUser = (user) => {
+    setLoggedUser(user);
+  }
+
   return <Container maxWidth="lg">
     <Grid container columnSpacing={2}>
       <Grid item md={12}>
         <Title primary>Startups and Users Landing Page</Title>
       </Grid>
       <Grid item md={9}>
-        <RegisterUserForm />
-        <LoginForm />
+        <RegisterUserForm updateUser={updateUser}/>
+        <LoginForm updateUser={updateUser}/>
         <ChangePasswordForm />
-        <AddTeamMemberForm />
+        <AddTeamMemberForm user={loggedUser} />
       </Grid>
-
     </Grid>
   </Container>
 };
