@@ -4,6 +4,7 @@ import { Title } from "../components/Title";
 import {RegisterUserForm} from "../fragments/RegisterUserForm";
 import {LoginForm} from "../fragments/LoginForm";
 import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
+import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
 
 export const Home = () => {
   return <Container maxWidth="lg">
@@ -15,6 +16,7 @@ export const Home = () => {
         <RegisterUserForm />
         <LoginForm />
         <ChangePasswordForm />
+        <AddTeamMemberForm />
       </Grid>
 
     </Grid>
