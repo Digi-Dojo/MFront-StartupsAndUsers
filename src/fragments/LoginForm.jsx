@@ -1,16 +1,15 @@
 import {TextField, Button, Grid, Alert} from "@mui/material";
 import {useEffect, useState} from "react";
 import {Title} from "../components/Title";
-import {useCreateUser} from "../hooks/useCreateUser";
+import {useLogin} from "../hooks/useLogin";
 
 
-export const RegisterUserForm = () => {
+export const LoginForm = () => {
 
-    const [registeredUser, setRegisteredUser] = useState(null)
-    const {loading, error, registerUser} = useCreateUser()
+    const [loggedUser, setLoggedUser] = useState(null)
+    const {loading, error, login} = useLogin()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
     const [formData, setFormData] = useState({
-        name: '',
         password: '',
         mailAddress: '',
     });
@@ -22,9 +21,9 @@ export const RegisterUserForm = () => {
     const handleSubmit = async (e) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
-        const response = await registerUser(formData)
+        const response = await login(formData)
         console.log(response)
-        setRegisteredUser(response)
+        setLoggedUser(response)
     };
 
     const handleChange = (e) => {
@@ -35,19 +34,10 @@ export const RegisterUserForm = () => {
     };
 
     return <main>
-        <Title secondary>Register User</Title>
-        {registeredUser === null &&
+        <Title secondary>Login</Title>
+        {loggedUser === null &&
             <form>
                 <Grid container rowSpacing={3} >
-                    <Grid item xs={12}>
-                        <TextField name="name"
-                                   required
-                                   id="outlined-basic"
-                                   label="Name"
-                                   variant="outlined"
-                                   onChange={handleChange}
-                                   value={formData.name} fullWidth/>
-                    </Grid>
                     <Grid item xs={12}>
                         <TextField name="mailAddress" required id="outlined-basic" label="Mail Address"
                                    variant="outlined"
@@ -55,26 +45,22 @@ export const RegisterUserForm = () => {
                                    value={formData.mailAddress} fullWidth/>
                     </Grid>
                     <Grid item xs={12}>
-
                         <TextField name="password" required id="outlined-basic" label="Password" variant="outlined"
                                    onChange={handleChange}
-                                   value={formData.password}
-                                   fullWidth
-                                   type="password"
-                        />
+                                   value={formData.password} fullWidth type="password"/>
                     </Grid>
                     <Grid item container justify="center">
                         <Button size="large" variant="contained" disabled={loading || disableSubmitButton}
-                                onClick={handleSubmit}>Register</Button>
+                                onClick={handleSubmit}>Login</Button>
                     </Grid>
                 </Grid>
             </form>
         }
         {error != null &&
-            <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}> An error occured: {error}</Alert>
+            <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}> Error: {error} </Alert>
         }
-        {registeredUser != null &&
-            <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> User {registeredUser.name} was successfully registered</Alert>
+        {loggedUser != null &&
+            <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> User {loggedUser.name} is loged in</Alert>
             //todo: add button to continue or do something next
         }
     </main>
