@@ -17,7 +17,6 @@ export const StartUpForm = () => {
         //todo: add form validation before calling the hook
         e.preventDefault();
         const response = await registerStartUp(formData)
-        console.log(response)
         setRegisteredStartUp(response)
     };
 

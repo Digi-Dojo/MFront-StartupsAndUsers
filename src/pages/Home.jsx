@@ -6,6 +6,7 @@ import {LoginForm} from "../fragments/LoginForm";
 import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
 import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
 import {useState} from "react";
+import {StartUpForm} from "../fragments/StartUpForm";
 
 export const Home = () => {
   const [loggedUser, setLoggedUser] = useState(null);
@@ -23,6 +24,7 @@ export const Home = () => {
         <RegisterUserForm updateUser={updateUser}/>
         <LoginForm updateUser={updateUser}/>
         <ChangePasswordForm />
+        <StartUpForm />
         <AddTeamMemberForm user={loggedUser} />
       </Grid>
     </Grid>
