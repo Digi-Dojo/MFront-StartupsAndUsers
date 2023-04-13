@@ -23,7 +23,6 @@ export const ChangePasswordForm = () => {
         //todo: add form validation before calling the hook
         e.preventDefault();
         const response = await updatePassword(formData)
-        console.log(response)
         setUpdatedUser(response)
     };
 
@@ -32,8 +31,6 @@ export const ChangePasswordForm = () => {
             ...formData,
             [e.target.name]: e.target.value,
         });
-        setDisableSubmitButton( Object.values(formData).some(x => ( x === '')))
-        console.log(formData);
     };
 
     return <main>

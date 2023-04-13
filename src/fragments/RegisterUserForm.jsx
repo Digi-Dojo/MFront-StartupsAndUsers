@@ -4,7 +4,7 @@ import {Title} from "../components/Title";
 import {useCreateUser} from "../hooks/useCreateUser";
 
 
-export const RegisterUserForm = () => {
+export const RegisterUserForm = (props) => {
 
     const [registeredUser, setRegisteredUser] = useState(null)
     const {loading, error, registerUser} = useCreateUser()
@@ -14,6 +14,12 @@ export const RegisterUserForm = () => {
         password: '',
         mailAddress: '',
     });
+
+    useEffect(() => {
+        if (registeredUser) {
+            props.updateUser(registeredUser);
+        }
+    }, [registeredUser]);
 
     useEffect(() => {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));

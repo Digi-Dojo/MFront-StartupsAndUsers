@@ -4,7 +4,7 @@ import {Title} from "../components/Title";
 import {useLogin} from "../hooks/useLogin";
 
 
-export const LoginForm = () => {
+export const LoginForm = (props) => {
 
     const [loggedUser, setLoggedUser] = useState(null)
     const {loading, error, login} = useLogin()
@@ -13,6 +13,13 @@ export const LoginForm = () => {
         password: '',
         mailAddress: '',
     });
+
+
+    useEffect(() => {
+        if (loggedUser) {
+            props.updateUser(loggedUser);
+        }
+    }, [loggedUser]);
 
     useEffect(() => {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
