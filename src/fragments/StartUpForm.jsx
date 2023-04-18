@@ -1,11 +1,12 @@
 import {TextField, Button, Grid, Alert} from "@mui/material";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Title} from "../components/Title";
 import {useCreateStartUp} from "../hooks/useCreateStartUp";
 
 
 export const StartUpForm = () => {
 
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const [registeredStartUp, setRegisteredStartUp] = useState(null)
     const {loading, error, registerStartUp} = useCreateStartUp();
     const [formData, setFormData] = useState({
@@ -27,6 +28,10 @@ export const StartUpForm = () => {
         });
     };
 
+    useEffect(() => {
+        setDisableSubmitButton(Object.values(formData).some(x => x === ''));
+    }, [formData]);
+
     return <main>
         <Title secondary>Create new Startup</Title>
         {registeredStartUp === null &&
@@ -44,7 +49,7 @@ export const StartUpForm = () => {
                                    value={formData.description} fullWidth/>
                     </Grid>
                     <Grid item container justify="center">
-                        <Button size="large" variant="contained" disabled={loading}
+                        <Button size="large" variant="contained" disabled={loading | disableSubmitButton}
                                 onClick={handleSubmit}>Submit</Button>
                     </Grid>
                 </Grid>
