@@ -67,7 +67,7 @@ export const LoginForm = (props) => {
             <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}> Error: {error} </Alert>
         }
         {loggedUser != null &&
-            <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> User {loggedUser.name} is loged in</Alert>
+            <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> User {loggedUser.name} is logged in</Alert>
             //todo: add button to continue or do something next
         }
     </main>

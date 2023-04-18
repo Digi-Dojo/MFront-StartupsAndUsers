@@ -3,18 +3,20 @@ import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextFiel
 import {useEffect, useState} from "react";
 import {Title} from "../components/Title";
 import {useCreateTeamMember} from "../hooks/useCreateTeamMember";
+import Gravatar from 'react-gravatar'
 
 export const AddTeamMemberForm = ({user}) => {
     const startups = useAllStartups()
-    const {loading, error, createTeamMember} = useCreateTeamMember()
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
+    const {loading, error, createTeamMember} = useCreateTeamMember()
     const [newTeamMember, setNewTeamMember] = useState(null);
     const [formData, setFormData] = useState({
         userId: '',
         role: '',
         startupId: ''
     });
+
 
     useEffect(() => {
         const newVal = user != null ? user.id : '';
@@ -51,10 +53,16 @@ export const AddTeamMemberForm = ({user}) => {
         })
     };
 
+
+//     const email = "https://www.gravatar.com/avatar/" + md5((user.mailAddress.trim()).toLowerCase());
+
     return (
         <main>
             <Title secondary>Add Team Member</Title>
-            <p>User: {user != null &&  <span>{user.name}</span>}</p>
+            <p>User: {user != null &&  <span>
+                {user.name}
+                <Gravatar email={user.mailAddress} />
+            </span>}</p>
             {newTeamMember === null &&
                 <form>
                     <Grid container rowSpacing={3}>
