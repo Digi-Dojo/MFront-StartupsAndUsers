@@ -1,31 +1,32 @@
 import {useAllStartups} from "../hooks/useAllStartups";
 import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Title} from "../components/Title";
 import {useCreateTeamMember} from "../hooks/useCreateTeamMember";
 import Gravatar from 'react-gravatar'
+import {UserContext} from "../components/UserContext";
 
-export const AddTeamMemberForm = ({user}) => {
+export const AddTeamMemberForm = () => {
     const startups = useAllStartups()
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const {loading, error, createTeamMember} = useCreateTeamMember()
+    const {loggedUser} = useContext(UserContext);
     const [newTeamMember, setNewTeamMember] = useState(null);
     const [formData, setFormData] = useState({
-        userId: '',
+        userId: loggedUser != null ? loggedUser.id: '',
         role: '',
         startupId: ''
     });
 
-
     useEffect(() => {
-        const newVal = user != null ? user.id : '';
+        const newVal = loggedUser != null ? loggedUser.id : '';
         setFormData({
             ...formData,
             userId: newVal,
         });
+    }, [loggedUser]);
 
-    }, [user]);
 
     useEffect(() => {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
@@ -59,9 +60,9 @@ export const AddTeamMemberForm = ({user}) => {
     return (
         <main>
             <Title secondary>Add Team Member</Title>
-            <p>User: {user != null &&  <span>
-                {user.name}
-                <Gravatar email={user.mailAddress} />
+            <p>User: {loggedUser != null &&  <span>
+                {loggedUser.name}
+                <Gravatar email={loggedUser.mailAddress} />
             </span>}</p>
             {newTeamMember === null &&
                 <form>

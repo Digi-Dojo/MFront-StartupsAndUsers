@@ -7,7 +7,7 @@ import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
 import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
 import {StartUpForm} from "../fragments/StartUpForm";
 import {UserContextProvider} from "../components/UserContextProvider";
-import {Logout} from "../fragments/Logout";
+import {Logout} from "../components/Logout";
 
 export const Home = () => {
 

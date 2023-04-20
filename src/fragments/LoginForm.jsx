@@ -1,23 +1,27 @@
 import {TextField, Button, Grid, Alert} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Title} from "../components/Title";
 import {useLogin} from "../hooks/useLogin";
+import {UserContext} from "../components/UserContext";
 
 
-export const LoginForm = (props) => {
+export const LoginForm = () => {
 
     const [loggedUser, setLoggedUser] = useState(null)
     const {loading, error, login} = useLogin()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
+    const {updateUser} = useContext(UserContext);
     const [formData, setFormData] = useState({
         password: '',
         mailAddress: '',
     });
 
 
+
+
     useEffect(() => {
         if (loggedUser) {
-            props.updateUser(loggedUser);
+            updateUser(loggedUser);
         }
     }, [loggedUser]);
 
@@ -29,7 +33,6 @@ export const LoginForm = (props) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
         const response = await login(formData)
-        console.log(response)
         setLoggedUser(response)
     };
 

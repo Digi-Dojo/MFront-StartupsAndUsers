@@ -1,14 +1,16 @@
 import {TextField, Button, Grid, Alert} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Title} from "../components/Title";
 import {useCreateUser} from "../hooks/useCreateUser";
+import {UserContext} from "../components/UserContext";
 
 
-export const RegisterUserForm = (props) => {
+export const RegisterUserForm = () => {
 
     const [registeredUser, setRegisteredUser] = useState(null)
     const {loading, error, registerUser} = useCreateUser()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
+    const {updateUser} = useContext(UserContext)
     const [formData, setFormData] = useState({
         name: '',
         password: '',
@@ -17,9 +19,10 @@ export const RegisterUserForm = (props) => {
 
     useEffect(() => {
         if (registeredUser) {
-            props.updateUser(registeredUser);
+            updateUser(registeredUser);
         }
-    }, [registeredUser]);
+    }, [registeredUser, updateUser]);
+
 
     useEffect(() => {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
