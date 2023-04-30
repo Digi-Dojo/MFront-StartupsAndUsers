@@ -1,69 +1,13 @@
-import {useAllStartups} from "../hooks/useAllStartups";
+import {Title} from "./Title";
+import {User} from "../fragments/User";
 import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
-import {useContext, useEffect, useState} from "react";
-import {Title} from "../components/Title";
-import {useCreateTeamMember} from "../hooks/useCreateTeamMember";
-import Gravatar from 'react-gravatar'
-import {UserContext} from "../components/UserContext";
+import {ErrorAlert} from "./ErrorAlert";
 
-export const AddTeamMemberForm = () => {
-    const startups = useAllStartups()
-    const [selectedStartup, setSelectedStartup] = useState("");
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true)
-    const {loading, error, createTeamMember} = useCreateTeamMember()
-    const {loggedUser} = useContext(UserContext);
-    const [newTeamMember, setNewTeamMember] = useState(null);
-    const [formData, setFormData] = useState({
-        userId: loggedUser != null ? loggedUser.id: '',
-        role: '',
-        startupId: ''
-    });
-
-    useEffect(() => {
-        const newVal = loggedUser != null ? loggedUser.id : '';
-        setFormData({
-            ...formData,
-            userId: newVal,
-        });
-    }, [loggedUser]);
-
-
-    useEffect(() => {
-        setDisableSubmitButton(Object.values(formData).some(x => x === ''));
-    }, [formData]);
-
-    const handleSubmit = async (e) => {
-        //todo: add form validation before calling the hook
-        e.preventDefault();
-        const response = await createTeamMember(formData)
-        setNewTeamMember(response)
-    };
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSelectChange = (e) => {
-        setSelectedStartup(e.target.value);
-        setFormData({
-            ...formData,
-            startupId: e.target.value.id,
-        })
-    };
-
-
-//     const email = "https://www.gravatar.com/avatar/" + md5((user.mailAddress.trim()).toLowerCase());
-
+export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData, handleChange, handleSubmit, error, loading, disableSubmitButton, selectedStartup, handleSelectChange}) => {
     return (
         <main>
             <Title secondary>Add Team Member</Title>
-            <p>User: {loggedUser != null &&  <span>
-                {loggedUser.name}
-                <Gravatar email={loggedUser.mailAddress} />
-            </span>}</p>
+            <User loggedUser={loggedUser}></User>
             {newTeamMember === null &&
                 <form>
                     <Grid container rowSpacing={3}>
@@ -98,10 +42,7 @@ export const AddTeamMemberForm = () => {
                     </Grid>
                 </form>
             }
-            {error != null &&
-                <Alert variant="outlined" severity="error" style={{marginTop: '16px'}}> An error
-                    occured: {error}</Alert>
-            }
+            <ErrorAlert error={error} />
             {newTeamMember != null &&
                 <Alert variant="outlined" severity="success" style={{marginTop: '16px'}}>You were successfully added as
                     a member to the startup {selectedStartup.name} with role {newTeamMember.role} </Alert>
