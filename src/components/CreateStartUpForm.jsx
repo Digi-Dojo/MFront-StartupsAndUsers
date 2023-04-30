@@ -1,37 +1,8 @@
-import {TextField, Button, Grid, Alert} from "@mui/material";
-import {useState, useEffect} from "react";
-import {Title} from "../components/Title";
-import {useCreateStartUp} from "../hooks/useCreateStartUp";
+import {Title} from "./Title";
+import {Alert, Button, Grid, TextField} from "@mui/material";
+import {ErrorAlert} from "./ErrorAlert";
 
-
-export const StartUpForm = () => {
-
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true)
-    const [registeredStartUp, setRegisteredStartUp] = useState(null)
-    const {loading, error, registerStartUp} = useCreateStartUp();
-    const [formData, setFormData] = useState({
-        name: '',
-        description: '',
-    });
-
-    const handleSubmit = async (e) => {
-        //todo: add form validation before calling the hook
-        e.preventDefault();
-        const response = await registerStartUp(formData)
-        setRegisteredStartUp(response)
-    };
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    useEffect(() => {
-        setDisableSubmitButton(Object.values(formData).some(x => x === ''));
-    }, [formData]);
-
+export const CreateStartUpForm = ({registeredStartUp, error, loading, disableSubmitButton, formData, handleChange, handleSubmit}) => {
     return <main>
         <Title secondary>Create new Startup</Title>
         {registeredStartUp === null &&
@@ -49,18 +20,16 @@ export const StartUpForm = () => {
                                    value={formData.description} fullWidth/>
                     </Grid>
                     <Grid item container justify="center">
-                        <Button size="large" variant="contained" disabled={loading | disableSubmitButton}
+                        <Button size="large" variant="contained" disabled={loading || disableSubmitButton}
                                 onClick={handleSubmit}>Submit</Button>
                     </Grid>
                 </Grid>
             </form>
         }
-        {error != null &&
-            <Alert variant="outlined" severity="error" style={{ marginTop: '16px' }}> An error occured: {error}</Alert>
-        }
+        <ErrorAlert error={error} />
         {registeredStartUp != null &&
             <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> Startup {registeredStartUp.name} was successfully created</Alert>
             //todo: add button to continue or do something next
         }
     </main>
-};
+}
