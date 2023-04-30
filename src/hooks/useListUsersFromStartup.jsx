@@ -1,30 +1,26 @@
-import { useEffect, useState } from "react"
+import { useState} from "react"
 import axios from 'axios';
 
 export const useListUsersFromStartup = () => {
-    const [users, setUsers] = useState([]);
-
-    const [loading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchUsers = async (listUsersDTO) => {
-        setIsLoading(true);
 
-          try {
-            const response = await axios.get('/v1/teammembers/startup/getAllUsers', listUsersDTO);
+    const listUsers = async (listUsersDTO) => {
+        setLoading(true);
 
-            setUsers(response)
-          } catch (error) {
-            setError(error)
-            console.error(error);
-          } finally{
-            setIsLoading(false);
-          }
-        };
+        try {
+            console.log(listUsersDTO)
+            const response = await axios.get('/v1/teammembers/getAllUsersForStartup', listUsersDTO);
+            setLoading(false);
+            setError(null);
+            return response.data;
+        } catch (err) {
+            setLoading(false);
+            setError(err.response.data.error);
+            return null;
+        }
+    };
 
-        fetchUsers();
-      }, [users]);
-
-      return {loading, error, users};
+    return {loading, error, listUsers};
 };
