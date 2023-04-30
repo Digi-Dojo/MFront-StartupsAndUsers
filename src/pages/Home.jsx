@@ -8,6 +8,7 @@ import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
 import {StartUpForm} from "../fragments/StartUpForm";
 import {UserContextProvider} from "../components/UserContextProvider";
 import {Logout} from "../components/Logout";
+import {ListUsersFromStartup} from "../fragments/ListUsersFromStartup"
 
 export const Home = () => {
 
@@ -25,6 +26,7 @@ export const Home = () => {
                         <ChangePasswordForm/>
                         <StartUpForm/>
                         <AddTeamMemberForm/>
+                        <ListUsersFromStartup/>
                     </Grid>
                 </Grid>
             </Container>
