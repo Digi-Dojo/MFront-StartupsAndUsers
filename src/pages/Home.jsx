@@ -7,7 +7,7 @@ import {ChangePassword} from "../fragments/ChangePassword";
 import {AddTeamMember} from "../fragments/AddTeamMember";
 import {CreateStartUp} from "../fragments/CreateStartUp";
 import {UserContextProvider} from "../components/UserContextProvider";
-import {Logout} from "../components/Logout";
+import {Logout} from "../fragments/Logout";
 import {ListUsersFromStartup} from "../fragments/ListUsersFromStartup"
 import {User} from "../fragments/User";
 

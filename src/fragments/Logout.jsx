@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {UserContext} from "./UserContext";
+import {UserContext} from "../components/UserContext";
 import {Button, Grid} from "@mui/material";
 
 export const Logout = () => {
