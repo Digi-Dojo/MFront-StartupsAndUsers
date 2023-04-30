@@ -1,14 +1,15 @@
 import {Grid} from "@mui/material";
 import {Container} from "@mui/system";
 import {Title} from "../components/Title";
-import {RegisterUserForm} from "../fragments/RegisterUserForm";
-import {LoginForm} from "../fragments/LoginForm";
-import {ChangePasswordForm} from "../fragments/ChangePasswordForm";
-import {AddTeamMemberForm} from "../fragments/AddTeamMemberForm";
-import {StartUpForm} from "../fragments/StartUpForm";
+import {RegisterUser} from "../fragments/RegisterUser";
+import {Login} from "../fragments/Login";
+import {ChangePassword} from "../fragments/ChangePassword";
+import {AddTeamMember} from "../fragments/AddTeamMember";
+import {CreateStartUp} from "../fragments/CreateStartUp";
 import {UserContextProvider} from "../components/UserContextProvider";
 import {Logout} from "../components/Logout";
 import {ListUsersFromStartup} from "../fragments/ListUsersFromStartup"
+import {User} from "../fragments/User";
 
 export const Home = () => {
 
@@ -21,11 +22,12 @@ export const Home = () => {
                     </Grid>
                     <Grid item md={9}>
                         <Logout/>
-                        <RegisterUserForm/>
-                        <LoginForm/>
-                        <ChangePasswordForm/>
-                        <StartUpForm/>
-                        <AddTeamMemberForm/>
+                        <User />
+                        <RegisterUser/>
+                        <Login/>
+                        <ChangePassword/>
+                        <CreateStartUp/>
+                        <AddTeamMember/>
                         <ListUsersFromStartup/>
                     </Grid>
                 </Grid>
