@@ -2,7 +2,7 @@
   "name": "startup-and-users",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:8080/",
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -16,6 +16,8 @@
     "react-dom": "^18.2.0",
     "react-gravatar": "^2.6.3",
     "react-scripts": "5.0.1",
+    "react-window": "^1.8.9",
+    "utils": "^0.3.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
