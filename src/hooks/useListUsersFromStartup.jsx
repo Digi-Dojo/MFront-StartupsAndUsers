@@ -2,25 +2,19 @@ import { useState} from "react"
 import axios from 'axios';
 
 export const useListUsersFromStartup = () => {
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-
-    const listUsers = async (listUsersDTO) => {
-        setLoading(true);
-
+    const listUsers = async (startupId) => {
         try {
-            console.log(listUsersDTO)
-            const response = await axios.get('/v1/teammembers/getAllUsersForStartup', listUsersDTO);
-            setLoading(false);
+            console.log(startupId)
+            const response = await axios.get(`/v1/teammembers/startup/${startupId}`);
             setError(null);
             return response.data;
         } catch (err) {
-            setLoading(false);
             setError(err.response.data.error);
             return null;
         }
     };
 
-    return {loading, error, listUsers};
+    return { error, listUsers};
 };
