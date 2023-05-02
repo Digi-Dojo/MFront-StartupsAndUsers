@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import {useUpdatePassword} from "../hooks/useUpdatePassword";
+import {useCreate} from "../hooks/useCreate";
 import {ChangePasswordForm} from "../components/ChangePasswordForm";
 
 
 export const ChangePassword = () => {
     const [updatedUser, setUpdatedUser] = useState(null)
-    const {loading, error, updatePassword} = useUpdatePassword()
+    const {loading, error, createNew} = useCreate()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
     const [formData, setFormData] = useState({
         mailAddress: '',
@@ -20,7 +20,7 @@ export const ChangePassword = () => {
     const handleSubmit = async (e) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
-        const response = await updatePassword(formData)
+        const response = await createNew(formData, "users/updatePassword")
         setUpdatedUser(response)
     };
 

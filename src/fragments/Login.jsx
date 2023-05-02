@@ -1,12 +1,12 @@
 import {useContext, useEffect, useState} from "react";
-import {useLogin} from "../hooks/useLogin";
+import {useCreate} from "../hooks/useCreate";
 import {UserContext} from "../components/UserContext";
 import {LoginForm} from "../components/LoginForm";
 
 
 export const Login = () => {
     const [loggedUser, setLoggedUser] = useState(null)
-    const {loading, error, login} = useLogin()
+    const {loading, error, createNew} = useCreate()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
     const {updateUser} = useContext(UserContext);
     const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
-        const response = await login(formData)
+        const response = await createNew(formData, "users/login")
         setLoggedUser(response)
     };
 

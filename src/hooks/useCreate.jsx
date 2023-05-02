@@ -1,18 +1,17 @@
 import {useState} from 'react';
 import axios from 'axios';
 
-export const useCreateUser = () => {
+export const useCreate = () => {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const registerUser = async (userDTO) => {
+    const createNew = async (operationDTO, path) => {
         setLoading(true);
 
         try {
-            const response = await axios.post('/v1/users/create', userDTO);
+            const response = await axios.post('/v1/'+ path, operationDTO);
             setLoading(false);
-            setError(null);
            return response.data;
         } catch (err) {
             setLoading(false);
@@ -21,5 +20,5 @@ export const useCreateUser = () => {
         }
     };
 
-    return { loading, error, registerUser };
+    return { loading, error, createNew };
 };

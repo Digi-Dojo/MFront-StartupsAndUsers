@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react";
-import {useCreateStartUp} from "../hooks/useCreateStartUp";
+import {useCreate} from "../hooks/useCreate";
 import {CreateStartUpForm} from "../components/CreateStartUpForm";
 
 export const CreateStartUp = () => {
 
-    const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const [createdStartUp, setCreatedStartUp] = useState(null)
-    const {loading, error, registerStartUp} = useCreateStartUp();
+    const {loading, error, createNew} = useCreate();
+    const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -15,7 +15,7 @@ export const CreateStartUp = () => {
     const handleSubmit = async (e) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
-        const response = await registerStartUp(formData)
+        const response = await createNew(formData, "startup/create")
         setCreatedStartUp(response)
     };
 

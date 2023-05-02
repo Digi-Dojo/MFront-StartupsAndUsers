@@ -1,6 +1,6 @@
 import {useAllStartups} from "../hooks/useAllStartups";
 import {useContext, useEffect, useState} from "react";
-import {useCreateTeamMember} from "../hooks/useCreateTeamMember";
+import {useCreate} from "../hooks/useCreate";
 import {UserContext} from "../components/UserContext";
 import {AddTeamMemberForm} from "../components/AddTeamMemberForm";
 
@@ -8,7 +8,7 @@ export const AddTeamMember = () => {
     const startups = useAllStartups()
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
-    const {loading, error, createTeamMember} = useCreateTeamMember()
+    const {loading, error, createNew} = useCreate()
     const {loggedUser} = useContext(UserContext);
     const [newTeamMember, setNewTeamMember] = useState(null);
     const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export const AddTeamMember = () => {
     const handleSubmit = async (e) => {
         //todo: add form validation before calling the hook
         e.preventDefault();
-        const response = await createTeamMember(formData)
+        const response = await createNew(formData, "teammembers/create")
         setNewTeamMember(response)
     };
 
