@@ -17,7 +17,9 @@ export const AddTeamMember = () => {
         startupId: ''
     });
 
-    console.log(startups);
+    useEffect(() => {
+        console.log(startups);
+    }, [startups]);
 
 
     useEffect(() => {
