@@ -13,7 +13,7 @@ export const ListUsersFromStartup = () => {
 
     const fetchData = async () => {
         const response = await listUsers(selectedStartup.id)
-        setUsers(response)
+        setUsers(response.data)
     }
     useEffect(() => {
         if (selectedStartup !== '') {
