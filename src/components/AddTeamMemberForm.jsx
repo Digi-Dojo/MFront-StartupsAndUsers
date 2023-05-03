@@ -26,11 +26,12 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
                                     onChange={handleSelectChange}
                                     label="Select a Startup"
                                 >
-                                    {startups.map((startup) => (
-                                        <MenuItem key={startup.id} value={startup}>
-                                            {startup.name}
-                                        </MenuItem>
-                                    ))}
+                                    {startups !== null&&
+                                        startups.map((startup) => (
+                                            <MenuItem key={startup.id} value={startup}>
+                                                {startup.name}
+                                            </MenuItem>
+                                        ))}
                                 </Select>
                             </FormControl>
                         </Grid>
