@@ -27,7 +27,8 @@ export const Home = () => {
                         <Login/>
                         <ChangePassword/>
                         <CreateStartUp/>
-
+                        <AddTeamMember/>
+                        <ListUsersFromStartup/>
                     </Grid>
                 </Grid>
             </Container>

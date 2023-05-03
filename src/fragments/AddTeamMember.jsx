@@ -17,6 +17,9 @@ export const AddTeamMember = () => {
         startupId: ''
     });
 
+    console.log(startups);
+
+
     useEffect(() => {
         const newVal = loggedUser != null ? loggedUser.id : '';
         setFormData({

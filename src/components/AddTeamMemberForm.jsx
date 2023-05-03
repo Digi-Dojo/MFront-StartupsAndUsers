@@ -3,6 +3,8 @@ import {User} from "../fragments/User";
 import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
 
+
+
 export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData, handleChange, handleSubmit, error, loading, disableSubmitButton, selectedStartup, handleSelectChange}) => {
     return (
         <main>

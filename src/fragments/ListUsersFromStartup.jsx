@@ -25,6 +25,8 @@ export const ListUsersFromStartup = () => {
         setSelectedStartup(e.target.value);
     };
 
+    console.log(startups);
+
    return(
        <ListUsersFromStartupForm selectedStartup={selectedStartup} error={error} handleSelectChange={handleSelectChange} users={users} startups={startups} />
    )
