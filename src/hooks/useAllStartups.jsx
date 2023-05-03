@@ -6,6 +6,7 @@ export const useAllStartups = () => {
 
     async function fetch() {
         const { data } = await axios.get('/v1/startup/getAll');
+        console.log(data)
         setStartups(data);
     }
 
@@ -15,5 +16,6 @@ export const useAllStartups = () => {
 
     useEffect(fetchStartups, []);
 
+    console.log(startups)
     return startups;
 };
