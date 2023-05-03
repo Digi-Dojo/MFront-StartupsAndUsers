@@ -3,6 +3,7 @@ import {Title} from "./Title";
 import {FormControl, Grid, InputLabel, MenuItem, Select} from "@mui/material";
 import {UserList} from "./UserList";
 import {ErrorAlert} from "./ErrorAlert";
+import {ListStartups} from "./ListStartups";
 
 export const ListUsersFromStartupForm = ({selectedStartup, handleSelectChange, startups, users, error}) => {
     return (
@@ -18,11 +19,7 @@ export const ListUsersFromStartupForm = ({selectedStartup, handleSelectChange, s
                                 onChange={handleSelectChange}
                                 label="Select a Startup"
                             >
-                                {startups.map((startup) => (
-                                    <MenuItem key={startup.id} value={startup}>
-                                        {startup.name}
-                                    </MenuItem>
-                                ))}
+                                <ListStartups startups={startups} />
                             </Select>
                         </FormControl>
                     </Grid>

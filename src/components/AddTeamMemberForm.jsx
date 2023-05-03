@@ -2,6 +2,7 @@ import {Title} from "./Title";
 import {User} from "../fragments/User";
 import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
+import {ListStartups} from "./ListStartups";
 
 
 
@@ -28,12 +29,7 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
                                     onChange={handleSelectChange}
                                     label="Select a Startup"
                                 >
-                                    {startups !== null&&
-                                        startups.map((startup) => (
-                                            <MenuItem key={startup.id} value={startup}>
-                                                {startup.name}
-                                            </MenuItem>
-                                        ))}
+                                    <ListStartups startups={startups} />
                                 </Select>
                             </FormControl>
                         </Grid>
