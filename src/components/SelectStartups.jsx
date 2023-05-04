@@ -11,7 +11,7 @@ export const SelectStartups = ({startups, selectedStartup, handleSelectChange}) 
                 onChange={handleSelectChange}
                 label="Select a Startup"
             >
-                {startups != null&&
+                {Array.isArray(startups)&&
                     startups.map((startup) => (
                         <MenuItem key={startup.id} value={startup}>
                             {startup.name}
