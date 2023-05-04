@@ -5,7 +5,8 @@ import {UserContext} from "../components/UserContext";
 import {AddTeamMemberForm} from "../components/AddTeamMemberForm";
 
 export const AddTeamMember = () => {
-    const startups = useAllStartups()
+    const {getStartups} = useAllStartups();
+    const [startups, setStartups] = useState();
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const {loading, error, createNew} = useCreate()
@@ -17,6 +18,15 @@ export const AddTeamMember = () => {
         startupId: ''
     });
 
+
+    const loadStartups = async () => {
+        const response = await getStartups();
+        setStartups(response);
+    }
+
+    useEffect(() => {
+       loadStartups();
+    }, []);
 
 
     useEffect(() => {

@@ -31,7 +31,6 @@ export const RegisterUser = () => {
         //todo: add form validation before calling the hook
         e.preventDefault();
         const response = await createNew(formData, "users/create")
-        console.log(response)
         setRegisteredUser(response)
     };
 

@@ -6,7 +6,6 @@ export const useListUsersFromStartup = () => {
 
     const listUsers = async (startupId) => {
         try {
-            console.log(startupId)
             const response = await axios.get(`/v1/teammembers/startup/${startupId}`);
             setError(null);
             return response.data;
