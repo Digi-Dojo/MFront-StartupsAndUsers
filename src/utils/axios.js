@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'https://dog.ceo/api/breeds'
+const baseURL = "http://localhost:8080/";
 
 //fixme: use this to declare default endpoint or delete it as it's not used atm
 
