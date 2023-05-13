@@ -7,6 +7,6 @@ const baseURL = "https://usersandteams.onrender.com/";
 export default axios.create({
   baseURL,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   }
 })
