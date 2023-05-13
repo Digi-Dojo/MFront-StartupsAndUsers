@@ -1,7 +1,10 @@
 import {Title} from "./Title";
 import {User} from "../fragments/User";
-import {Alert, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {Alert, Button, Grid, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
+import {SelectStartups} from "./SelectStartups";
+
+
 
 export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData, handleChange, handleSubmit, error, loading, disableSubmitButton, selectedStartup, handleSelectChange}) => {
     return (
@@ -18,22 +21,7 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
                                        fullWidth
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            <FormControl variant="outlined" fullWidth>
-                                <InputLabel>Select a Startup</InputLabel>
-                                <Select
-                                    value={selectedStartup}
-                                    onChange={handleSelectChange}
-                                    label="Select a Startup"
-                                >
-                                    {startups.map((startup) => (
-                                        <MenuItem key={startup.id} value={startup}>
-                                            {startup.name}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Grid>
+                        <SelectStartups selectedStartup={selectedStartup} handleSelectChange={handleSelectChange} startups={startups} />
                         <Grid item container justify="center">
                             <Button size="large" variant="contained" disabled={loading || disableSubmitButton}
                                     onClick={handleSubmit}

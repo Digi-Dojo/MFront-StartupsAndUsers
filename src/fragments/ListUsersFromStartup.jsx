@@ -6,18 +6,30 @@ import {ListUsersFromStartupForm} from "../components/ListUsersFromStartupForm";
 
 export const ListUsersFromStartup = () => {
 
-    const startups = useAllStartups()
+    const {getStartups} = useAllStartups();
+    const [startups, setStartups] = useState();
     const [selectedStartup, setSelectedStartup] = useState('');
     const {error, listUsers} = useListUsersFromStartup();
     const [users, setUsers] = useState(null);
 
-    const fetchData = async () => {
+    const loadStartups = async () => {
+        const response = await getStartups();
+        setStartups(response);
+    }
+
+    const getUsers = async () => {
         const response = await listUsers(selectedStartup.id)
         setUsers(response)
     }
+
+    useEffect(() => {
+        loadStartups();
+    }, []);
+
+
     useEffect(() => {
         if (selectedStartup !== '') {
-            fetchData()
+            getUsers()
         }
     }, [selectedStartup]);
 
