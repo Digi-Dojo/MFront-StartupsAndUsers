@@ -6,7 +6,6 @@ export const UserContextProvider = ({ children }) => {
 
     useEffect(() => {
         setLoggedUser(JSON.parse(sessionStorage.getItem('userContext')));
-        console.log("getState")
     }, []);
 
     const updateUser = (user) => {
