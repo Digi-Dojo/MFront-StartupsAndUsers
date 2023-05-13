@@ -1,14 +1,15 @@
 import {Title} from "./Title";
+import {User} from "../fragments/User";
 import {Alert, Button, Grid, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
 import {SelectStartups} from "./SelectStartups";
-import {UserComponent} from "./UserComponent";
 
 export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData, handleChange, handleSubmit, error, loading, disableSubmitButton, selectedStartup, handleSelectChange}) => {
     return (
         <main>
             <Title secondary>Add Team Member</Title>
-            <UserComponent loggedUser={loggedUser}></UserComponent>
+            <User loggedUser={loggedUser}></User>
+            {newTeamMember === null &&
                 <form>
                     <Grid container rowSpacing={3}>
                         <Grid item xs={12}>
@@ -26,11 +27,13 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
                         </Grid>
                     </Grid>
                 </form>
+            }
             <ErrorAlert error={error} />
             {newTeamMember != null &&
                 <Alert variant="outlined" severity="success" style={{marginTop: '16px'}}>You were successfully added as
                     a member to the startup {selectedStartup.name} with role {newTeamMember.role} </Alert>
             }
+
         </main>
     );
 
