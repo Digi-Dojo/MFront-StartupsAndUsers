@@ -13,6 +13,7 @@ export const useCreate = () => {
 
         try {
             const response = await axios.post('/v1/'+ path, operationDTO);
+            setError(null);
             setLoading(false);
            return response.data;
         } catch (err) {
