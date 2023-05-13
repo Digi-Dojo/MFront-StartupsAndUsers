@@ -1,11 +1,14 @@
-import {useAllStartups} from "./hooks/useAllStartups";
+
 import {useContext, useEffect, useState} from "react";
-import {useCreate} from "./hooks/useCreate";
+import {useAllStartups} from "./hooks/useAllStartups";
 import {UserContext} from "./components/UserContext";
+import {useCreate} from "./hooks/useCreate";
 import {AddTeamMemberForm} from "./components/AddTeamMemberForm";
 
-export default function AddTeamMember() {
-    const startups = useAllStartups()
+
+export const AddTeamMember = () => {
+    const {getStartups} = useAllStartups();
+    const [startups, setStartups] = useState();
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const {loading, error, createNew} = useCreate()
@@ -16,6 +19,17 @@ export default function AddTeamMember() {
         role: '',
         startupId: ''
     });
+
+
+    const loadStartups = async () => {
+        const response = await getStartups();
+        setStartups(response);
+    }
+
+    useEffect(() => {
+        loadStartups();
+    }, []);
+
 
     useEffect(() => {
         const newVal = loggedUser != null ? loggedUser.id : '';
