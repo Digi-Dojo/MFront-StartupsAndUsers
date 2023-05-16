@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react"
-import axios from 'axios';
+import axios from "../utils/axios";
+
 
 export const useAllStartups = () => {
-    const [startups, setStartups] = useState([]);
 
-    async function fetch() {
-        const { data } = await axios.get('/v1/startup/getAll');
-        setStartups(data);
+    const getStartups = async () => {
+        const response = await axios.get('/v1/startup/getAll');
+        return response.data;
     }
 
-    function fetchStartups() {
-        fetch();
-    }
 
-    useEffect(fetchStartups, []);
-
-    return startups;
+    return {getStartups};
 };

@@ -1,10 +1,8 @@
-import Gravatar from "react-gravatar";
-import {useContext} from "react";
-import {UserContext} from "../components/UserContext";
 import {ListItem, ListItemAvatar, ListItemText, Paper} from "@mui/material";
+import Gravatar from "react-gravatar";
 
-export const User = () => {
-    const {loggedUser} = useContext(UserContext);
+
+export const UserComponent = ({loggedUser}) => {
     if (loggedUser != null) {
         return (
             <Paper variant="outlined"
@@ -31,6 +29,4 @@ export const User = () => {
             </div>
         </Paper>
     }
-
-
 }
