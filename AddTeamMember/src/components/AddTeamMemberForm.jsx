@@ -1,14 +1,14 @@
 import {Title} from "./Title";
-import {User} from "../fragments/User";
 import {Alert, Button, Grid, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
 import {SelectStartups} from "./SelectStartups";
+import {UserComponent} from "./UserComponent";
 
 export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData, handleChange, handleSubmit, error, loading, disableSubmitButton, selectedStartup, handleSelectChange}) => {
     return (
         <main>
             <Title secondary>Add Team Member</Title>
-            <User loggedUser={loggedUser}></User>
+            <UserComponent loggedUser={loggedUser}></UserComponent>
             {newTeamMember === null &&
                 <form>
                     <Grid container rowSpacing={3}>
