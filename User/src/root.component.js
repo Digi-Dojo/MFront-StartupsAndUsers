@@ -4,5 +4,5 @@ import {UserComponent} from "./components/UserComponent";
 
 export const User = () => {
     const {loggedUser} = useContext(UserContext);
-    return <UserComponent loggedUser={loggedUser} />
+    return (<UserComponent loggedUser={loggedUser} />);
 }
