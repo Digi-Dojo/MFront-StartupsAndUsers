@@ -1,8 +1,9 @@
 import {useState, useEffect} from "react";
 import {useCreate} from "./hooks/useCreate";
-import {CreateStartUpForm} from "./components/CreateStartUpForm";
+import CreateStartUpForm from "./components/CreateStartUpForm";
 
-export default function CreateStartUp() {
+
+const CreateStartUp = () => {
 
     const [createdStartUp, setCreatedStartUp] = useState(null)
     const {loading, error, createNew} = useCreate();
@@ -30,6 +31,10 @@ export default function CreateStartUp() {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
     }, [formData]);
 
-    return (<CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
-                      formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>);
+    return (
+        <CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
+                      formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
+    )
 };
+
+export default CreateStartUp;
