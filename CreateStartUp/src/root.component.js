@@ -30,6 +30,6 @@ export default function CreateStartUp() {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
     }, [formData]);
 
-    return <CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
-                      formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
+    return (<CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
+                      formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>);
 };
