@@ -1,12 +1,8 @@
 import {useState, useEffect} from "react";
 import {useCreate} from "./hooks/useCreate";
-import Title from "./components/Title";
-import {Alert, Button, Grid, TextField} from "@mui/material";
-import ErrorAlert from "./components/ErrorAlert";
-import CreateStartUpForm from "./components/CreateStartUpForm";
+import {CreateStartUpForm} from "./components/CreateStartUpForm";
 
-
-const CreateStartUp = () => {
+export default function CreateStartUp() {
 
     const [createdStartUp, setCreatedStartUp] = useState(null)
     const {loading, error, createNew} = useCreate();
@@ -34,10 +30,6 @@ const CreateStartUp = () => {
         setDisableSubmitButton(Object.values(formData).some(x => x === ''));
     }, [formData]);
 
-    return (
-    <CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
-                       formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
-    )
+    return (<CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
+                      formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>);
 };
-
-export default CreateStartUp;
