@@ -3,7 +3,7 @@ import {Alert, Button, Grid, TextField} from "@mui/material";
 import {ErrorAlert} from "./ErrorAlert";
 
 export const CreateStartUpForm = ({registeredStartUp, error, loading, disableSubmitButton, formData, handleChange, handleSubmit}) => {
-    return <main>
+    return (<section>
         <Title secondary>Create new Startup</Title>
         {registeredStartUp === null &&
             <form>
@@ -31,5 +31,5 @@ export const CreateStartUpForm = ({registeredStartUp, error, loading, disableSub
             <Alert variant="outlined" severity="success" style={{ marginTop: '16px' }}> Startup {registeredStartUp.name} was successfully created</Alert>
             //todo: add button to continue or do something next
         }
-    </main>
+    </section>);
 }
