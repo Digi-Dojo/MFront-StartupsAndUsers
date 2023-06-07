@@ -35,8 +35,8 @@ const CreateStartUp = () => {
     }, [formData]);
 
     return (
-        <CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
-                           formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
+    <CreateStartUpForm disableSubmitButton={disableSubmitButton} error={error} loading={loading} registeredStartUp={createdStartUp}
+                       formData={formData} handleChange={handleChange} handleSubmit={handleSubmit}/>
     )
 };
 
