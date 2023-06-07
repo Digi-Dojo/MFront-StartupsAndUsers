@@ -2,7 +2,8 @@ import {Title} from "./Title";
 import {Alert, Grid, TextField} from "@mui/material";
 import {InputMail} from "./InputMail";
 import {SubmitButton} from "./SubmitButton";
-import {ErrorAlert} from "./ErrorAlert";
+import ErrorAlert from "./ErrorAlert";
+
 
 export const ChangePasswordForm = ({formData, updatedUser, handleChange, handleSubmit, disableSubmitButton, loading, error}) => {
     return <main>
