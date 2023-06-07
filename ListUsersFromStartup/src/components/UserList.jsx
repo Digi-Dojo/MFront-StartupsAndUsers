@@ -23,5 +23,7 @@ export const UserList = ({users}) => {
                 ))}
             </List>
         );
+    }else{
+        return <></>
     }
 };
