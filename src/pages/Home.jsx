@@ -10,8 +10,25 @@ import {UserContextProvider} from "../components/UserContextProvider";
 import {Logout} from "../fragments/Logout";
 import {ListUsersFromStartup} from "../fragments/ListUsersFromStartup"
 import {User} from "../fragments/User";
+import GoogleLogIn from "../components/GoogleLogIn";
+import GoogleLogOut from "../components/GoogleLogOut";
+import { useEffect } from 'react';
+import { gapi } from 'gapi-script';
+
+const clientId = "544595415685-pd4ena5un6g1k94ikd3plbeueapnfo37.apps.googleusercontent.com";
 
 export const Home = () => {
+
+    useEffect(() => {
+        function start() {
+            gapi.client.init({
+            clientId: clientId,
+            scope: ""
+            })
+        };
+
+        gapi.load('client:auth2', start);
+    });
 
     return <main>
         <UserContextProvider>
@@ -24,6 +41,8 @@ export const Home = () => {
                         <Logout/>
                         <User />
                         <RegisterUser/>
+                        <GoogleLogIn/>
+                        <GoogleLogOut/>
                         <Login/>
                         <ChangePassword/>
                         <CreateStartUp/>
