@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://https://usersandteams.onrender.com/'
-
-//fixme: use this to declare default endpoint or delete it as it's not used atm
+const baseURL = 'https://usersandteams.onrender.com/'
 
 export default axios.create({
   baseURL,
