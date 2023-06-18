@@ -9,7 +9,6 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
         <main>
             <Title secondary>Add Team Member</Title>
             <UserComponent loggedUser={loggedUser}></UserComponent>
-            {newTeamMember === null &&
                 <form>
                     <Grid container rowSpacing={3}>
                         <Grid item xs={12}>
@@ -27,13 +26,11 @@ export const AddTeamMemberForm = ({startups, loggedUser, newTeamMember, formData
                         </Grid>
                     </Grid>
                 </form>
-            }
             <ErrorAlert error={error} />
             {newTeamMember != null &&
                 <Alert variant="outlined" severity="success" style={{marginTop: '16px'}}>You were successfully added as
                     a member to the startup {selectedStartup.name} with role {newTeamMember.role} </Alert>
             }
-
         </main>
     );
 
