@@ -1,7 +1,7 @@
-import {useContext, useEffect, useState} from "react";
 import {useCreate} from "./hooks/useCreate";
-import {UserContext} from "./components/UserContext";
 import {RegisterUserForm} from "./components/RegisterUserForm";
+import Cookies from 'js-cookie';
+import {useEffect, useState} from "react";
 
 
 export default function RegisterUser() {
@@ -9,18 +9,12 @@ export default function RegisterUser() {
     const [registeredUser, setRegisteredUser] = useState(null)
     const {loading, error, createNew} = useCreate()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
-    const {updateUser} = useContext(UserContext)
+
     const [formData, setFormData] = useState({
         name: '',
         password: '',
         mailAddress: '',
     });
-
-    useEffect(() => {
-        if (registeredUser) {
-            updateUser(registeredUser);
-        }
-    }, [registeredUser, updateUser]);
 
 
     useEffect(() => {
@@ -32,6 +26,8 @@ export default function RegisterUser() {
         e.preventDefault();
         const response = await createNew(formData, "users/create")
         setRegisteredUser(response)
+        Cookies.set('user', JSON.stringify(response), {expires: 7}); // Save loggedUser in a cookie
+
     };
 
     const handleChange = (e) => {
