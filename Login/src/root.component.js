@@ -1,22 +1,28 @@
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useCreate} from "./hooks/useCreate";
-import {UserContext} from "./components/UserContext";
 import {LoginForm} from "./components/LoginForm";
-
+import Cookies from 'js-cookie';
 
 export default function Login() {
     const [loggedUser, setLoggedUser] = useState(null)
     const {loading, error, createNew} = useCreate()
     const [disableSubmitButton, setDisableSubmitButton] = useState(false)
-    const {updateUser} = useContext(UserContext);
     const [formData, setFormData] = useState({
         password: '',
         mailAddress: '',
     });
 
     useEffect(() => {
+        const userCookie = Cookies.get('user');
+        if(userCookie) {
+            setLoggedUser(JSON.parse(userCookie));
+        }
+    }, []);
+
+    useEffect(() => {
         if (loggedUser) {
-            updateUser(loggedUser);
+
+            Cookies.set('user', JSON.stringify(loggedUser), {expires: 7}); // Save loggedUser in a cookie
         }
     }, [loggedUser]);
 
@@ -25,10 +31,10 @@ export default function Login() {
     }, [formData]);
 
     const handleSubmit = async (e) => {
-        //todo: add form validation before calling the hook
         e.preventDefault();
         const response = await createNew(formData, "users/login")
         setLoggedUser(response)
+        location.reload();
     };
 
     const handleChange = (e) => {
