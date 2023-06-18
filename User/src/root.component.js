@@ -1,8 +1,7 @@
-import {useContext} from "react";
-import {UserContext} from "./components/UserContext";
 import {UserComponent} from "./components/UserComponent";
+import {useUserFromCookie} from "./hooks/useUserFromCookie";
 
 export const User = () => {
-    const {loggedUser} = useContext(UserContext);
+    const loggedUser = useUserFromCookie();
     return (<UserComponent loggedUser={loggedUser} />);
 }
