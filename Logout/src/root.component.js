@@ -1,12 +1,12 @@
-import {useContext} from "react";
-import {UserContext} from "./components/UserContext";
 import {Button, Grid} from "@mui/material";
+import Cookies from "js-cookie";
+import {useUserFromCookie} from "./hooks/useUserFromCookie";
 
 export default function Logout() {
-    const {loggedUser, updateUser} = useContext(UserContext);
+    const loggedUser = useUserFromCookie();
 
     const handleLogout = () => {
-        updateUser(null)
+        Cookies.remove('user');
     }
 
     return <main>
