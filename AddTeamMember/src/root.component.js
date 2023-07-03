@@ -1,9 +1,9 @@
 
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useAllStartups} from "./hooks/useAllStartups";
-import {UserContext} from "./components/UserContext";
 import {useCreate} from "./hooks/useCreate";
 import {AddTeamMemberForm} from "./components/AddTeamMemberForm";
+import {useUserFromCookie} from "./hooks/useUserFromCookie";
 
 
 export const AddTeamMember = () => {
@@ -12,7 +12,7 @@ export const AddTeamMember = () => {
     const [selectedStartup, setSelectedStartup] = useState("");
     const [disableSubmitButton, setDisableSubmitButton] = useState(true)
     const {loading, error, createNew} = useCreate()
-    const {loggedUser} = useContext(UserContext);
+    const loggedUser = useUserFromCookie();
     const [newTeamMember, setNewTeamMember] = useState(null);
     const [formData, setFormData] = useState({
         userId: loggedUser != null ? loggedUser.id : '',
