@@ -4,7 +4,7 @@ Welcome to the `MFront-StartupsAndUsers` frontend repository. This repository ho
 
 ## Microfrontends Deployment Information
 
-Each microfrontend is deployed on its unique URL as shown below:
+Each microfrontend is deployed on RENDER on its unique URL as shown below:
 
 - [Add Team Member](https://sddl-add-team-member.onrender.com/startup-digi-dojo-lab-add-team-member.js)
 - [Change Password](https://sddl-change-password.onrender.com/startup-digi-dojo-lab-change-password.js)
