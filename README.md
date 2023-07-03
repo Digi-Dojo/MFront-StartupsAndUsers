@@ -26,3 +26,9 @@ The combined PR of all these microfrontends can be found deployed at this URL: [
 In the case that the backend is not responding, you can manually trigger a redeploy using the following deploy hook: 
 [Deploy Hook](https://api.render.com/deploy/srv-ch96vc3hp8u0vhacfd9g?key=kXndqBDjn04)
 
+## Branch Information
+
+- **vanillaReact**: This branch hosts the vanilla React version of the project. The deployed version can be found [here](https://mfront-startupsandusers.onrender.com/).
+
+- **authenticationGoogle**: This branch contains a work-in-progress implementation of Google sign-in. Stay tuned for updates.
+
