@@ -30,5 +30,5 @@ In the case that the backend is not responding, you can manually trigger a redep
 
 - **vanillaReact**: This branch hosts the vanilla React version of the project. The deployed version can be found [here](https://mfront-startupsandusers.onrender.com/).
 
-- **authenticationGoogle**: This branch contains a work-in-progress implementation of Google sign-in. Stay tuned for updates.
+- **authenticationGoogle**: This branch contains a work-in-progress implementation of Google sign-in.
 
